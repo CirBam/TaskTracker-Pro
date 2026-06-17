@@ -23,6 +23,9 @@ def create_app():
         db.create_all()
         print("Database tables successfully created")
 
+    @app.route('/')
+    def home():
+        return {"message": "TaskTracker Pro API is running!"}, 200
     return app
 
 if __name__ == '__main__':
