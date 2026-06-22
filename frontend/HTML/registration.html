@@ -2,9 +2,13 @@
 <html>
   <head>
     <title>TaskTracker Pro</title>
-    <link rel="stylesheet" href="loginstyle.css">
+    <link rel="stylesheet" href="../CSS/loginstyle.css">
+    <link rel="stylesheet" href="../CSS/header.css">
   </head>
   <body>
+    <header class="login">
+      <h1>TaskTracker Pro</h1>
+    </header>
     <h2>User Registration</h2>
     <div>
       <form>
@@ -12,7 +16,7 @@
         <input type="text" id="username" name="username"><br>
 	<p>Password:</p>
         <input type="text" id="password" name="password"><br>
-        <input type="button" value="Create Account" onclick="register">
+        <input type="submit" value="Create Account" onclick="register">
 	<p>Already have an account?</p>
 	<a href="login.html">
           <button type="button">Back to login</button>
