@@ -1,0 +1,22 @@
+.data {
+  border: 1px solid black;
+  padding: 0 5px;
+  background-color: #155f82;
+}
+
+p {
+  margin: 0 5px;
+}
+
+td {
+  width: 33%;
+}
+
+table {
+  width: 75%;
+  margin: auto;
+}
+
+tr:last-child td {
+  text-align: center;
+}
