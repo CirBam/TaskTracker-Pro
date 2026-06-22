@@ -1,0 +1,25 @@
+h2 {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+form {
+  margin: auto;
+  width: 200px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  margin: 0 auto 5px;
+}
+
+form p {
+  margin: 20px auto 0;
+}
+
+button {
+  margin: auto;
+  width: 100px;
+}
