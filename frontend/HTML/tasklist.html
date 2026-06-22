@@ -1,0 +1,80 @@
+<!doctype HTML>
+<html>
+<head>
+  <title>TaskTracker Pro</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/taskview.css">
+  <script src="../JavaScript/taskprinter.js"></script>
+</head>
+<body>
+  <header class="navi">
+    <h1>TaskTracker Pro</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="homescreen.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="tasklist.html">Tasks</a>
+        </li>
+        <li>
+          <a href="edittask.html">Create Task</a>
+        </li>
+        <li>
+          <a onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <h2>Tasks</h2>
+  <table id="tablefilters">
+    <tr>
+      <td>
+        <p>Filter:</p>
+        <select class="filter">
+          <option>All</option>
+          <option>Work</option>
+          <option>School</option>
+          <option>Chores</option>
+          <option>Miscellaneous</option>
+        </select>
+      </td>
+      <td>
+        <p>Sort by:</p>
+        <select class="filter">
+          <option>Due Date</option>
+          <option>Priority</option>
+          <option>Title</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <table id="tasktable">
+    <tr>
+      <td>Title</td>
+      <td>Due Date</td>
+      <td>Priority</td>
+      <td>Category</td>
+      <td>Status</td>
+    </tr>
+  </table>
+  <table id="optiontable">
+    <tr>
+      <td>
+	<button onclick="openView(0)">View</button>
+      </td>
+      <td>
+	<button onclick="openView(1)">Edit</button>
+      </td>
+      <td>
+	<button onclick="openView(2)">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+	<button>Create New Task</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
