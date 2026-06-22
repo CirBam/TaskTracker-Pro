@@ -1,0 +1,61 @@
+<!doctype HTML>
+<html>
+<head>
+  <title>TaskTracker Pro</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/dash.css">
+</head>
+<body>
+  <header class="navi">
+    <h1>TaskTracker Pro</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="homescreen.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="tasklist.html">Tasks</a>
+        </li>
+        <li>
+          <a href="edittask.html">Create Task</a>
+        </li>
+        <li>
+          <a onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <h2>View Task</h2>
+  <div>
+    <p>Title</p>
+    <p class="data" id="title">Error</p>
+    <p>Description</p>
+    <p class="data" id="desc">Blank</p>
+    <p>Due Date</p>
+    <p class="data" id="date">1/1/1970</p>
+    <table>
+      <tr>
+        <td><p>Category</p></td>
+        <td><p>Priority</p></td>
+        <td><p>Status</p></td>
+      </tr>
+      <tr>
+        <td><p class="data" id="category">Other</p></td>
+        <td><p class="data" id="priority">Low</p></td>
+        <td><p class="data" id="complete">Not Completed</p><td>
+      </tr>
+      <tr>
+        <td>
+          <button onclick="finished()">Mark Complete</button>
+        </td>
+        <td>
+	  <button onclick="edit()">Edit</button>
+	</td>
+        <td>
+	  <button onclick="delete()">Delete</button>
+	</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
