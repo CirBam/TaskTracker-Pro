@@ -2,10 +2,17 @@ body {
   margin: 0
 }
 
+div {
+  background-color: #404040;
+  color: white;
+  max-width: 50%;
+  margin: 2px auto;
+  padding: 5px;
+}
+
 header {
   background-color: #404040;
   color: white;
-  margin-bottom: 10px;
 }
 
 .login {
@@ -28,6 +35,7 @@ nav ul li a {
   display: block;
   padding: 5px 10px;
   text-decoration: none;
+  color: white;
 }
 
 nav ul li a:hover {
@@ -44,7 +52,16 @@ h1 {
 }
 
 h2 {
-  margin: auto;
+  margin: 10px auto;
   width: 100%;
   text-align: center;
+}
+
+h3 {
+  text-align: center;
+  margin: 5px auto;
+}
+
+p {
+  margin-left: 5px;
 }
