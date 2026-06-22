@@ -25,10 +25,10 @@ class Task(db.Model):
     __tablename__ = 'tasks'
 
     task_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), unique=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.Text, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
-    priority = db.Column(db.Integer, nullable=False)
+    priority = db.Column(db.String(20), nullable=False)
     category = db.Column(db.String(80), nullable=False)
     completed = db.Column(db.Boolean, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
