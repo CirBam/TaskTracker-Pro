@@ -1,0 +1,44 @@
+select {
+  display: inline-block;
+  background-color: #e4742d;
+}
+
+#tablefilters {
+  background-color: #404040;
+  color: white;
+}
+
+#tablefilters p {
+  margin: 8px 0;
+  display: inline-block;
+}
+
+#tasktable {
+  
+}
+
+#tasktable tr:first-child td {
+  background-color: #155f82;
+  color: white;
+}
+
+#tasktable td {
+  width: 20%;
+}
+
+#tasktable tr:nth-child(even) {
+}
+
+#optiontable {
+  background-color: #404040;
+}
+
+#optiontable td {
+  width: 33%;
+}
+
+table {
+  margin: auto;
+  width: 500px;
+  text-align: center;
+}
