@@ -2,12 +2,28 @@
 <html>
 <head>
   <title>TaskTracker Pro</title>
+  <link rel="stylesheet" href="../CSS/header.css">
 </head>
 <body>
-  <header>
+  <header class="navi">
+    <h1>TaskTracker Pro</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="homescreen.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="tasklist.html">Tasks</a>
+        </li>
+        <li>
+          <a href="edittask.html">Create Task</a>
+        </li>
+        <li>
+          <a onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </nav>
   </header>
-  <nav>
-  </nav>
   <h2>Create/Edit Task</h2>
   <form>
     <p>Title</p>
