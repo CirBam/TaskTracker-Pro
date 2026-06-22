@@ -13,10 +13,6 @@ select {
   display: inline-block;
 }
 
-#tasktable {
-  
-}
-
 #tasktable tr:first-child td {
   background-color: #155f82;
   color: white;
@@ -24,9 +20,11 @@ select {
 
 #tasktable td {
   width: 20%;
+  background-color: #c0c0c0;
 }
 
-#tasktable tr:nth-child(even) {
+#tasktable tr:nth-child(even) td {
+  background-color: #999;
 }
 
 #optiontable {
