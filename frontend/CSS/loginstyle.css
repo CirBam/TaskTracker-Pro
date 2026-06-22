@@ -1,6 +1,6 @@
 form {
   margin: auto;
-  width: 200px;
+  width: 300px;
   text-align: center;
 }
 
@@ -10,10 +10,16 @@ input {
 }
 
 form p {
-  margin: 20px auto 0;
+  margin: 0 auto 0;
 }
 
-button {
+form button {
   margin: auto;
   width: 100px;
+  display: inline-block;
+}
+
+select {
+  margin: 0 auto 5px;
+  display: block;
 }
