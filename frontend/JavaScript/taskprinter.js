@@ -31,9 +31,9 @@ function listTasks(jsonList) {
     tasktable += `<td>${statusText}</td>`;
     tasktable += `
     <td>
-      <button onclick="openView(0, ${task.task_id})">View</button>
-      <button onclick="openView(1, ${task.task_id})">Edit</button>
-      <button onclick="openView(2, ${task.task_id})">Delete</button>
+      <button onclick="openView2(0, ${task.task_id})">View</button>
+      <button onclick="openView2(1, ${task.task_id})">Edit</button>
+      <button onclick="openView2(2, ${task.task_id})">Delete</button>
     </td>
     `;
 
