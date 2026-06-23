@@ -10,7 +10,7 @@ fetch(`http://localhost:5000/api/tasks?user_id=${currentUserId}`)
     console.error(error);
 });
 
-function openView(mode, taskID){
+function openView2(mode, taskID){
     if (mode == 0){
         window.location.href = `viewtask.html?task_id=${taskID}`;
 
