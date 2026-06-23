@@ -19,6 +19,9 @@ function openView(mode, taskID){
         window.location.href = `edittask.html?task_id=${taskID}`;
     }
     else if (mode == 2){
-        alert("Delete task " + taskID);
+        let check = confirm("Delete task " + taskID);
+        if (check) {
+            //put delete command here
+        }
     }
 }
