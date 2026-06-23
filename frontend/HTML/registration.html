@@ -11,19 +11,68 @@
     </header>
     <h2>User Registration</h2>
     <div>
-      <form>
-	<p>Username</p>
-        <input type="text" id="username" name="username"><br>
-	<p>Password</p>
-        <input type="text" id="password" name="password"><br>
-	<p>Confirm Password</p>
-        <input type="password" id="password2" name="password2"><br>
-        <input type="submit" value="Create Account" onclick="register">
-	<p>Already have an account?</p>
-	<a href="login.html">
+      <form id="registerForm">
+        <p>Username</p>
+        <input type="text" id="username" name="username" required><br>
+
+        <p>Password</p>
+        <input type="password" id="password" name="password" required><br>
+
+        <p>Confirm Password</p>
+        <input type="password" id="password2" name="password2" required><br>
+
+        <input type="submit" value="Create Account">
+
+        <p>Already have an account?</p>
+        <a href="login.html">
           <button type="button">Back to login</button>
-	</a>
+        </a>
       </form>
     </div>
+
+    <script>
+      document.getElementById("registerForm").addEventListener("submit", function(e) {
+        // Prevent the default form submission behavior (page refresh)
+        e.preventDefault();
+
+        const usernameInput = document.getElementById("username").value;
+        const passwordInput = document.getElementById("password").value;
+        const confirmPasswordInput = document.getElementById("password2").value;
+
+        // 1. Validate that the passwords match before doing anything else
+        if (passwordInput !== confirmPasswordInput) {
+          alert("Passwords do not match. Please try again.");
+          return; // Stop the function here if they don't match
+        }
+
+        // 2. Prepare the data to send to Flask
+        const payload = {
+          username: usernameInput,
+          password: passwordInput
+        };
+
+        // 3. Send the POST request to the registration route
+        fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+          // If the backend returns a success message
+          if (data.message) {
+            alert("Account created successfully! Please log in.");
+            window.location.href = "login.html"; // Send them to the login page
+          } else {
+            // If the backend returns an error (e.g., username already taken)
+            alert("Registration failed: " + data.error);
+          }
+        })
+        .catch(err => {
+          console.error("Connection error:", err);
+          alert("Could not connect to the server. Is Flask running?");
+        });
+      });
+    </script>
   </body>
 </html>

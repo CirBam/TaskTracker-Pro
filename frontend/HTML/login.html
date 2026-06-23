@@ -11,17 +11,53 @@
     </header>
     <h2>Login</h2>
     <div>
-      <form>
-	<p>Username:</p>
-        <input type="text" id="username" name="username"><br>
-	<p>Password:</p>
-        <input type="password" id="password" name="password"><br>
+      <form id="loginForm">
+        <p>Username:</p>
+        <input type="text" id="username" name="username" required><br>
+        <p>Password:</p>
+        <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Log in">
-	<p>Don't have an account?</p>
-	<a href="registration.html">
+        <p>Don't have an account?</p>
+        <a href="registration.html">
           <button type="button">Register</button>
-	</a>
+        </a>
       </form>
     </div>
+
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", function(e) {
+        // Prevent the page from refreshing when you click submit
+        e.preventDefault();
+
+        // Grab the data from the input fields
+        const payload = {
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value
+        };
+
+        // Send a POST request to your Flask backend
+        fetch('http://localhost:5000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.user_id) {
+            // If successful, save the user info to the browser and redirect
+            localStorage.setItem("user_id", data.user_id);
+            localStorage.setItem("username", data.username);
+            window.location.href = "homescreen.html";
+          } else {
+            // If it fails (wrong password, user doesn't exist), show the error
+            alert("Login failed: " + data.error);
+          }
+        })
+        .catch(err => {
+          console.error("Connection error:", err);
+          alert("Could not connect to the server. Is Flask running?");
+        });
+      });
+    </script>
   </body>
 </html>

@@ -20,36 +20,93 @@
           <a href="edittask.html">Create Task</a>
         </li>
         <li>
-          <a onclick="logout()">Logout</a>
+          <a onclick="logout()" style="cursor: pointer;">Logout</a>
         </li>
       </ul>
     </nav>
   </header>
   <h2>Create/Edit Task</h2>
   <div>
-  <form>
-    <p>Title</p>
-    <input type="text" id="title"><br>
-    <p>Description</p>
-    <input type="text" id="desc"><br>
-    <p>Due Date</p>
-    <input type="date" id="date"><br>
-    <p>Category</p>
-    <select id="category">
-      <option value="Work">Work</option>
-      <option value="School">Schoolwork</option>
-      <option value="Chore">Chores</option>
-      <option value="Other">Miscellaneous</option>
-    </select>
-    <p>Priority</p>
-    <select id="priority">
-      <option value="Low">Low</option>
-      <option value="Mid">Normal</option>
-      <option value="High">High</option>
-      <option value="Max">Urgent</option>
-    </select>
-    <button type="submit">Save</button>
-    <button>Cancel</button>
-  </form></div>
+    <form id="taskForm">
+      <p>Title</p>
+      <input type="text" id="title" required><br>
+
+      <p>Description</p>
+      <input type="text" id="desc"><br>
+
+      <p>Due Date</p>
+      <input type="date" id="date" required><br>
+
+      <p>Category</p>
+      <select id="category">
+        <option value="Work">Work</option>
+        <option value="School">Schoolwork</option>
+        <option value="Chore">Chores</option>
+        <option value="Other">Miscellaneous</option>
+      </select>
+
+      <p>Priority</p>
+      <select id="priority">
+        <option value="Low">Low</option>
+        <option value="Mid">Normal</option>
+        <option value="High">High</option>
+        <option value="Max">Urgent</option>
+      </select>
+
+      <br><br>
+      <button type="submit">Save</button>
+      <button type="button" onclick="window.location.href='tasklist.html'">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+    // 1. Security Check: Make sure a user is actually logged in!
+    const currentUserId = localStorage.getItem("user_id");
+    if (!currentUserId) {
+      alert("You must be logged in to create a task.");
+      window.location.href = "login.html";
+    }
+
+    // 2. Form Submission Handler
+    document.getElementById("taskForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Stop the page from reloading
+
+      // Gather all the data from the dropdowns and inputs
+      const payload = {
+        user_id: currentUserId,
+        title: document.getElementById("title").value,
+        description: document.getElementById("desc").value,
+        date: document.getElementById("date").value,
+        category: document.getElementById("category").value,
+        priority: document.getElementById("priority").value
+      };
+
+      // Send POST request to Flask
+      fetch('http://localhost:5000/api/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          alert("Task created successfully!");
+          window.location.href = "tasklist.html"; // Redirect them to see their new task
+        } else {
+          alert("Failed to save task: " + data.error);
+        }
+      })
+      .catch(err => {
+        console.error("Connection error:", err);
+        alert("Could not connect to the server. Is Flask running?");
+      });
+    });
+
+    // 3. Logout function for the navbar
+    function logout() {
+      localStorage.clear(); // Wipe the saved user data
+      window.location.href = "login.html"; // Send back to login
+    }
+  </script>
 </body>
 </html>
