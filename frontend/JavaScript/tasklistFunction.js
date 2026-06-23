@@ -14,6 +14,10 @@ function openView2(mode, taskID){
     if (mode == 0){
         window.location.href = `viewtask.html?task_id=${taskID}`;
     }
+    if (mode == 1) {
+        window.location.href = `edittask.html?task_id=${taskID}`;
+    }
+}
 function loadTaskList(){
 
     const currentUserId = localStorage.getItem("user_id");
