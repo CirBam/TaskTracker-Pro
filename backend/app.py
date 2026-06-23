@@ -97,6 +97,25 @@ def create_app():
             return jsonify({'error': 'Task not found'}), 404 # 404 = Not Found
         return jsonify(tasks.task_to_dict(task)), 200
 
+    @app.route('/api/tasks/<task_id>/complete', methods=['PUT'])
+    def complete_task(task_id):
+        """
+        For completing a task
+        """
+        success = tasks.complete_task(task_id)
+        if success:
+            return jsonify({"message": "Task marked complete"}), 200
+        return jsonify({'error': 'Task not found'}), 404
+
+    @app.route('/api/tasks/<task_id>/', methods=['DELETE'])
+    def delete_task(task_id):
+        """
+        For deleting a task
+        """
+        deleted = tasks.delete_task(task_id)
+        if deleted:
+            return jsonify({"message": "Task deleted"}), 200
+        return jsonify({'error': 'Task not found'}), 404
     return app
 
 if __name__ == '__main__':
