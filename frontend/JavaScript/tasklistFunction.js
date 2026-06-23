@@ -13,6 +13,7 @@ fetch(`http://localhost:5000/api/tasks?user_id=${currentUserId}`)
 function openView2(mode, taskID){
     if (mode == 0){
         window.location.href = `viewtask.html?task_id=${taskID}`;
+    }
 function loadTaskList(){
 
     const currentUserId = localStorage.getItem("user_id");
