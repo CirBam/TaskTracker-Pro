@@ -83,6 +83,14 @@
 	<script>
 		var selectedTask = null;
 
+		function selectTask(newid) {
+			if (selectedTask) {
+				document.getElementById(selectedTask).className = "";
+			}
+			document.getElementById(newid).className = "taskselect";
+			selectedTask = newid;
+		}
+
 		function openView(mode) {
 			switch (mode) {
 				case 0://view
