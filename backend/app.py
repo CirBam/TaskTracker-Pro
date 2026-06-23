@@ -57,7 +57,7 @@ def create_app():
     @app.route("/api/tasks", methods=['GET'])
     def get_tasks():
         """
-        For getting a list of tasks
+        For getting a list of tasks of the user
         """
         user_id = request.args.get('user_id') # From Justin's file
         user_tasks = tasks.get_tasks_for_user(user_id)
@@ -116,6 +116,31 @@ def create_app():
         if deleted:
             return jsonify({"message": "Task deleted"}), 200
         return jsonify({'error': 'Task not found'}), 404
+
+    @app.route('/api/tasks/<task_id>/', methods=['PUT'])
+    def update_task(task_id):
+        """
+        For updating a task
+        """
+        data = request.json
+
+        try:
+            updated_task = tasks.update_task(
+                task_id=task_id,
+                title=data.get('title'),
+                description=data.get('description'),
+                date=data.get('date'),
+                priority=data.get('priority'),
+                category=data.get('category')
+            )
+
+            if updated_task is None:
+                return jsonify({'error': 'Task not found'}), 404
+            return jsonify(updated_task), 200
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 400
+
     return app
 
 if __name__ == '__main__':
