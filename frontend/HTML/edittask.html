@@ -4,6 +4,7 @@
   <title>TaskTracker Pro</title>
   <link rel="stylesheet" href="../CSS/header.css">
   <link rel="stylesheet" href="../CSS/loginstyle.css">
+  <script src="../JavaScript/siteFunctions.js"></script>
 </head>
 <body>
   <header class="navi">
@@ -105,12 +106,6 @@
         alert("Could not connect to the server. Is Flask running?");
       });
     });
-
-    // 3. Logout function for the navbar
-    function logout() {
-      localStorage.clear(); // Wipe the saved user data
-      window.location.href = "login.html"; // Send back to login
-    }
   </script>
 </body>
 </html>
