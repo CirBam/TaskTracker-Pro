@@ -9,7 +9,7 @@ function listTasks(jsonList) {
       <th>Priority</th>
       <th>Category</th>
       <th>Status</th>
-      <th>Actions>/th>
+      <th>Actions</th>
     </tr>
   `;
 
