@@ -76,12 +76,12 @@ def create_app():
 
         try:
             new_task = tasks.create_task(
-                user_id=user_id,
                 title=data.get('title'),
                 description=data.get('description'),
-                priority=data.get('priority'),
                 date=data.get('date'),
+                priority=data.get('priority'),
                 category=data.get('category'),
+                user_id=user_id,
             )
             return jsonify(tasks.task_to_dict(new_task)), 201
         except Exception as e:
