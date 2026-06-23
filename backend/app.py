@@ -33,7 +33,7 @@ def create_app():
         data = request.json
         status, user = auth.register(data.get('username'), data.get('password')) # For authenticating the user
 
-        if status == auth.AUTH_SUCCESS: # Actually testing if it authenticates
+        if status == auth.REGISTER_SUCCESS: # Actually testing if it authenticates
             return jsonify({"message": "User registered successfully"}), 201 # 201 is for the HTML status code, 201 = Created
         return jsonify({"error": status}), 400 # For basic troubleshooting, 400 = Bad Request
 
