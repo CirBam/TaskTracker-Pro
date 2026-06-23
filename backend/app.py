@@ -21,29 +21,38 @@ def create_app():
 
     db.init_app(app)
 
-    @app.route('/')
+    @app.route('/') # If nothing is called just testing
     def home():
         return {"message": "TaskTracker Pro API is running!"}, 200
 
-    @app.route("/api/register", methods=['POST'])
+    @app.route("/api/register", methods=['POST']) # This is an endpoint so that the frontend can fetch from here
     def register_user():
+        """
+        For registering a new user
+        """
         data = request.json
-        status, user = auth.authenticate(data['username'], data['password'])
+        status, user = auth.authenticate(data['username'], data['password']) # For authenticating the user
 
-        if status == auth.AUTH_SUCCESS:
-            return jsonify({"message": "User registered successfully"}), 201
-        return jsonify({"error": status}), 400
+        if status == auth.AUTH_SUCCESS: # Actually testing if it authenticates
+            return jsonify({"message": "User registered successfully"}), 201 # 201 is for the HTML status code, 201 = Created
+        return jsonify({"error": status}), 400 # For basic troubleshooting, 400 = Bad Request
 
     @app.route("/api/login", methods=['POST'])
     def login_user():
+        """
+        For login a user
+        """
         data = request.json
         status, user = auth.authenticate(data['username'], data['password'])
         if status == auth.AUTH_SUCCESS:
-            return jsonify({"message": "User logged in"}), 200
-        return jsonify({"error": status}), 400
+            return jsonify({"message": "User logged in"}), 200 # 200 = OK
+        return jsonify({"error": status}), 401 # 401 = Unauthorized user
 
     @app.route("/api/tasks", methods=['POST'])
     def get_tasks():
+        """
+        For getting a list of tasks
+        """
         user_id = 1
         user_tasks = tasks.get_tasks_for_user(user_id)
 
@@ -52,6 +61,9 @@ def create_app():
 
     @app.route("/api/tasks", methods=['POST'])
     def add_tasks():
+        """
+        For adding a task
+        """
         data = request.json
 
         try:
