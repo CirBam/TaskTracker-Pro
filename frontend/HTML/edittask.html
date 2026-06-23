@@ -89,7 +89,7 @@
       })
       .then(response => response.json())
       .then(data => {
-        if (data.message) {
+        if (data.task_id) {
           alert("Task created successfully!");
           window.location.href = "tasklist.html"; // Redirect them to see their new task
         } else {
