@@ -67,6 +67,10 @@
       window.location.href = "login.html";
     }
 
+    // Checks if there is a taskid provided in the url
+    let params = new URLSearchParams(window.location.search);
+    let task_id = params.get("taskid");
+
     // 2. Form Submission Handler
     document.getElementById("taskForm").addEventListener("submit", function(e) {
       e.preventDefault(); // Stop the page from reloading
