@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="../CSS/header.css">
   <link rel="stylesheet" href="../CSS/dash.css">
 	<script src="../JavaScript/siteFunctions.js"></script>
+  <script src="../JavaScript/tasklistFunction.js"></script>
 </head>
 <body>
   <header class="navi">
@@ -53,46 +54,11 @@
 	  <button onclick="edit()">Edit</button>
 	</td>
         <td>
-	  <button onclick="deleteTask()">Delete</button>
+	  <button onclick="delete()">Delete</button>
 	</td>
       </tr>
     </table>
-	  <script>
-		  const currentUserId = localStorage.getItem("user_id");
-		  if (!currentUserId) {
-			  alert("You must be logged in to view tasks.");
-			  window.location.href = "login.html";
-		  }
-		  
-		  let params = new URLSearchParams(window.location.search);
-		  const task_id = params.get("taskid");
-		  
-		  if (!task_id) {
-		  }
-		  else {
-			  //put data request here
-			  let data = null; //save requested data to this variable.
-			  if (!data) {
-				  alert("Task does not exist.");
-				  window.location.href = "tasklist.html";
-			  }
-			  else if (data.userid != currentUserId) {
-				  alert("You do not have permission to access this task.");
-				  window.location.href = "tasklist.html";
-			  }
-			  else {
-				  document.getElementById("title").innerHTML = data.title;
-				  document.getElementById("desc").innerHTML = data.desc;
-				  document.getElementById("date").innerHTML = data.date;
-				  document.getElementById("priority").innerHTML = data.prioity;
-				  document.getElementById("complete").innerHTML = data.complete;
-			  }
-		  }
-
-		  function finished() {
-			  //put request for marking task complete here.
-		  }
-	  </script>
   </div>
+  <script>loadTask();</script>
 </body>
 </html>
