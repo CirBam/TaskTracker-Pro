@@ -70,7 +70,23 @@
 
     // Checks if there is a taskid provided in the url
     let params = new URLSearchParams(window.location.search);
-    let task_id = params.get("taskid");
+    let task_id = params.get("task_id");
+
+    // If it is an existing task
+    if (task_id){
+      fetch(`http://localhost:5000/api/tasks/${task_id}`)
+      .then(response => response.json())
+      .then(task => {
+        document.getElementById("title").value = task.title;
+        document.getElementById("desc").value = task.description;
+        document.getElementById("date").value = task.date;
+        document.getElementById("category").value = task.category;
+        document.getElementById("priority").value = task.priority;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
 
     // 2. Form Submission Handler
     document.getElementById("taskForm").addEventListener("submit", function(e) {
@@ -87,18 +103,32 @@
       };
 
       // Send POST request to Flask
-      fetch('http://localhost:5000/api/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      let url;
+      let method;
+      if (task_id){
+        url = `http://localhost:5000/api/tasks/${task_id}`;
+        method = "PUT";
+      }
+      else{
+        url = "http://localhost:5000/api/tasks";
+        method = "POST";
+      }
+      fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(payload)
       })
       .then(response => response.json())
       .then(data => {
-        if (data.task_id) {
-          alert("Task created successfully!");
-          window.location.href = "tasklist.html"; // Redirect them to see their new task
-        } else {
-          alert("Failed to save task: " + data.error);
+        if (task_id){
+          alert("Task updated successfully");
+          window.location.href = `viewtask.html?task_id=${task_id}`;
+        }
+        else{
+          alert("Task created successfully");
+          window.location.href = "tasklist.html";
         }
       })
       .catch(err => {
