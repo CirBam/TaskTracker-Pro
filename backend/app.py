@@ -78,7 +78,7 @@ def create_app():
             new_task = tasks.create_task(
                 user_id=user_id,
                 title=data.get('title'),
-                description=data.get('desc'),
+                description=data.get('description'),
                 priority=data.get('priority'),
                 date=data.get('date'),
                 category=data.get('category'),
