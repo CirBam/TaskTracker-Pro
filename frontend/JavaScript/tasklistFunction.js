@@ -63,7 +63,7 @@ function loadTask(){
 
 function finished(){
     const params = new URLSearchParams(window.location.search);
-    const taskId = params.get("task_id");
+    const taskId = params.get("taskid");
 
     fetch(`http://localhost:5000/api/tasks/${taskId}/complete`, {
         method: "PUT"
