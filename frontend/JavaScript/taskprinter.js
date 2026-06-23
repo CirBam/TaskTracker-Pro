@@ -17,7 +17,7 @@ function listTasks(jsonList) {
 
   // Iterate over the actual tasks array, not the hardcoded header data
   tasks.forEach(task => {
-    tasktable += "<tr>";
+    tasktable += `<tr id="task${task.taskid}">`;
 
     // Inject the properties directly into table data cells
     tasktable += `<td>${task.title}</td>`;
