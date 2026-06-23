@@ -21,6 +21,10 @@ def create_app():
 
     db.init_app(app)
 
+    with app.app_context(): # To create tables if they dont exist
+        db.create_all()
+        print("Database tables successfully created")
+
     @app.route('/') # If nothing is called just testing
     def home():
         return {"message": "TaskTracker Pro API is running!"}, 200
@@ -40,12 +44,14 @@ def create_app():
     @app.route("/api/login", methods=['POST'])
     def login_user():
         """
-        For login a user
+        For loging in a user
         """
         data = request.json
         status, user = auth.authenticate(data.get('username'), data.get('password'))
         if status == auth.AUTH_SUCCESS:
-            return jsonify({"message": "User logged in"}), 200 # 200 = OK
+            # From Justin's file:
+            # We return the user_id so the frontend can save it in localStorage
+            return jsonify({"message": "Login successful", "user_id": user.user_id, "username": user.username}), 200
         return jsonify({"error": status}), 401 # 401 = Unauthorized user
 
     @app.route("/api/tasks", methods=['GET'])
@@ -53,7 +59,7 @@ def create_app():
         """
         For getting a list of tasks
         """
-        user_id = 1
+        user_id = request.args.get('user_id') # From Justin's file
         user_tasks = tasks.get_tasks_for_user(user_id)
 
         task_list = [tasks.task_to_dict(t) for t in user_tasks]
@@ -66,9 +72,11 @@ def create_app():
         """
         data = request.json
 
+        user_id = data.get('user_id')  # From Justin's file
+
         try:
             new_task = tasks.create_task(
-                user_id=1,
+                user_id=user_id,
                 title=data.get('title'),
                 description=data.get('desc'),
                 priority=data.get('priority'),
@@ -83,4 +91,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(host='localhost', debug=True, port=5000)
+    app.run(host='localhost', debug=True, port=5000) # Runs the server on http://localhost:5000/
