@@ -9,6 +9,7 @@ function listTasks(jsonList) {
       <th>Priority</th>
       <th>Category</th>
       <th>Status</th>
+      <th>Actions>/th>
     </tr>
   `;
 
@@ -17,7 +18,7 @@ function listTasks(jsonList) {
 
   // Iterate over the actual tasks array, not the hardcoded header data
   tasks.forEach(task => {
-    tasktable += `<tr id="task${task.taskid}">`;
+    tasktable += `<tr id="task${task.task_id}">`;
 
     // Inject the properties directly into table data cells
     tasktable += `<td>${task.title}</td>`;
@@ -28,6 +29,13 @@ function listTasks(jsonList) {
     // Format the boolean completion status into readable text
     let statusText = task.completed ? "Completed" : "Pending";
     tasktable += `<td>${statusText}</td>`;
+    tasktable += `
+    <td>
+      <button onclick="openView(0, ${task.task_id})">View</button>
+      <button onclick="openView(1, ${task.task_id})">Edit</button>
+      <button onclick="openView(2, ${task.task_id})">Delete</button>
+    </td>
+    `;
 
     tasktable += "</tr>";
   });
