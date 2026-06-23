@@ -40,3 +40,7 @@ table {
   width: 500px;
   text-align: center;
 }
+
+.taskselect {
+  background-color: yellow;
+}
