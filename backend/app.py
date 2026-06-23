@@ -87,6 +87,16 @@ def create_app():
         except Exception as e:
             return jsonify({'error': str(e)}), 400
 
+    @app.route('/api/tasks/<task_id>', methods=['GET'])
+    def get_single_task(task_id):
+        """
+        For getting a single task
+        """
+        task = tasks.get_task(task_id)
+        if not task:
+            return jsonify({'error': 'Task not found'}), 404 # 404 = Not Found
+        return jsonify(tasks.task_to_dict(task)), 200
+
     return app
 
 if __name__ == '__main__':
