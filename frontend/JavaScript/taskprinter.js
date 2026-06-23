@@ -18,7 +18,7 @@ function listTasks(jsonList) {
 
   // Iterate over the actual tasks array, not the hardcoded header data
   tasks.forEach(task => {
-    tasktable += `<tr id="task${task.task_id}">`;
+    tasktable += `<tr id="task${task.task_id} onclick="selectTask(${task.task_id})">`;
 
     // Inject the properties directly into table data cells
     tasktable += `<td>${task.title}</td>`;
@@ -44,4 +44,35 @@ function listTasks(jsonList) {
 
   // Update the table in the DOM
   document.getElementById("tasktable").innerHTML = tasktable;
+}
+
+var selectedTask = null;
+
+function selectTask(newid) {
+  if (selectedTask) {
+    document.getElementById(selectedTask).className = "";
+  }
+  document.getElementById(newid).className = "taskselect";
+  selectedTask = newid;
+}
+
+function openView(mode) {
+  switch (mode) {
+    case 0://view
+      let targetUrl = "viewtask.html?taskid=" + selectedTask;
+      window.location.href(targetUrl);
+			break;
+		case 1://edit
+			let targetUrl = "edittask.html?taskid=" + selectedTask;
+			window.location.href(targetUrl);
+			break;
+		case 2://delete
+			var check = confirm("Are you sure you want to delete this task?");
+			if (check) {
+				//enter delete command here.
+			}
+			break;
+		default:
+      alert("Something went wrong. Please try again.");
+  }
 }
