@@ -29,13 +29,6 @@ function listTasks(jsonList) {
     // Format the boolean completion status into readable text
     let statusText = task.completed ? "Completed" : "Pending";
     tasktable += `<td>${statusText}</td>`;
-    tasktable += `
-    <td>
-      <button onclick="openView2(0, ${task.task_id})">View</button>
-      <button onclick="openView2(1, ${task.task_id})">Edit</button>
-      <button onclick="openView2(2, ${task.task_id})">Delete</button>
-    </td>
-    `;
 
     tasktable += "</tr>";
   });
