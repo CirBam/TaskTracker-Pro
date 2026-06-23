@@ -31,7 +31,7 @@ def create_app():
         For registering a new user
         """
         data = request.json
-        status, user = auth.authenticate(data['username'], data['password']) # For authenticating the user
+        status, user = auth.register(data.get('username'), data.get('password')) # For authenticating the user
 
         if status == auth.AUTH_SUCCESS: # Actually testing if it authenticates
             return jsonify({"message": "User registered successfully"}), 201 # 201 is for the HTML status code, 201 = Created
@@ -43,12 +43,12 @@ def create_app():
         For login a user
         """
         data = request.json
-        status, user = auth.authenticate(data['username'], data['password'])
+        status, user = auth.authenticate(data.get('username'), data.get('password'))
         if status == auth.AUTH_SUCCESS:
             return jsonify({"message": "User logged in"}), 200 # 200 = OK
         return jsonify({"error": status}), 401 # 401 = Unauthorized user
 
-    @app.route("/api/tasks", methods=['POST'])
+    @app.route("/api/tasks", methods=['GET'])
     def get_tasks():
         """
         For getting a list of tasks
