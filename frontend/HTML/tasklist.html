@@ -23,7 +23,7 @@
           <a href="edittask.html">Create Task</a>
         </li>
         <li>
-          <a onclick="logout() style="cursor:pointer;">Logout</a>
+          <a onclick="logout()" style="cursor:pointer;">Logout</a>
         </li>
       </ul>
     </nav>
@@ -33,7 +33,7 @@
     <tr>
       <td>
         <p>Filter:</p>
-        <select class="filter">
+        <select class="filter" id="filterSelect" onchange="applyFilterAndSort()">
           <option>All</option>
           <option>Work</option>
           <option>School</option>
@@ -43,7 +43,7 @@
       </td>
       <td>
         <p>Sort by:</p>
-        <select class="filter">
+        <select class="filter" id="sortSelect" onchange="applyFilterAndSort()">
           <option>Due Date</option>
           <option>Priority</option>
           <option>Title</option>
@@ -63,13 +63,13 @@
   <table id="optiontable">
     <tr>
       <td>
-	<button onclick="openView(0)">View</button>
+	<button onclick="openSelected(0)">View</button>
       </td>
       <td>
-	<button onclick="openView(1)">Edit</button>
+	<button onclick="openSelected(1)">Edit</button>
       </td>
       <td>
-	<button onclick="openView(2)">Delete</button>
+	<button onclick="openSelected(2)">Delete</button>
       </td>
     </tr>
     <tr>
