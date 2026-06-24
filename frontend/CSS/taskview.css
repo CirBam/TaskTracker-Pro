@@ -41,6 +41,7 @@ table {
   text-align: center;
 }
 
-.taskselect {
-  background-color: yellow;
+.taskselect td{
+  background-color: #87cefa !important;
+  font-weight: bold;
 }
